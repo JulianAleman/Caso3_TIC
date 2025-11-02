@@ -40,6 +40,13 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Crear Buzones
+        BuzonCuarentena BC= new BuzonCuarentena();
+        BuzonEntrada BE = new BuzonEntrada();
+        BuzonEntrega BEN= new BuzonEntrega(CapBEN);
+
+
         // CREACION DE THREADS
             // Clientes Emisores
         for (int i= 0; i<numeroCE;i++){
@@ -57,7 +64,7 @@ public class Main {
             c.start();
         }
             //Moderador
-        Moderador m = new Moderador();
+        Moderador m = new Moderador(BC, BEN);
         m.start();
 
     }
