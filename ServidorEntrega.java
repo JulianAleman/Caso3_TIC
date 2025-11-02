@@ -1,3 +1,3 @@
-public class ServidorEntrega {
+public class ServidorEntrega extends Thread{
     
 }

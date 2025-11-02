@@ -1,3 +1,3 @@
-public class Moderador {
+public class Moderador extends Thread{
     
 }

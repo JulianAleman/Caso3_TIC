@@ -1,3 +1,3 @@
-public class FiltroSPAM {
+public class FiltroSPAM extends Thread{
     
 }

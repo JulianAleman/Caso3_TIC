@@ -1,3 +1,3 @@
-public class ClienteEmisor {
+public class ClienteEmisor extends Thread{
     
 }
