@@ -40,22 +40,24 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //Total de mensajes 
+        int totalMensajes=numeroCE*numMPC;
 
         //Crear Buzones
         BuzonCuarentena BC= new BuzonCuarentena();
-        //BuzonEntrada BE = new BuzonEntrada();
+        BuzonEntrada BE = new BuzonEntrada(CapBE, totalMensajes);
         BuzonEntrega BEN= new BuzonEntrega(CapBEN);
 
 
         // CREACION DE THREADS
             // Clientes Emisores
         for (int i= 0; i<numeroCE;i++){
-           // ClienteEmisor c= new ClienteEmisor();
-           // c.start();
+           ClienteEmisor c= new ClienteEmisor(numMPC, i, BE);
+           c.start();
         }
             //Filtros SPAM
         for (int i= 0; i<numSPAM;i++){
-            FiltroSPAM c= new FiltroSPAM();
+            FiltroSPAM c= new FiltroSPAM(numeroCE, BC, BE, BEN);
             c.start();
         }
             //Servidores de Entrega

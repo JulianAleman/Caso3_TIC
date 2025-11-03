@@ -32,11 +32,8 @@ public class ClienteEmisor extends Thread{
                 mensaje= new Mensaje(secuencial);
             }
             //mandamos el mensaje al buzon de entrada
-            try {
-                buzonEntrada.IngresarMensaje(mensaje);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            buzonEntrada.IngresarMensaje(mensaje);
+            
         }
     }
 }

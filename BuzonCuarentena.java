@@ -15,8 +15,8 @@ public class BuzonCuarentena {
         int tiempo= random.nextInt(10001)+10000;
         m.setTiempo(tiempo);
         mensajes.add(m);
-
     }
+    
     public synchronized Mensaje revisar(){
         Mensaje encontrado= null;
         for (Mensaje m: mensajes){

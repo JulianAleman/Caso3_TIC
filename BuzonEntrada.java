@@ -11,19 +11,29 @@ public class BuzonEntrada {
     }
 
 
-    public synchronized void IngresarMensaje(Mensaje mensaje) throws InterruptedException{
+    public synchronized void IngresarMensaje(Mensaje mensaje) {
         while (mensajes.size()==capacidad) {
-            wait();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         mensajes.add(mensaje);
         totalMensajes--;
         notify();
     }
 
-    public synchronized Mensaje SacarMensaje() throws InterruptedException{
+    public synchronized Mensaje SacarMensaje(){
         Mensaje mensaje=null;
         while (mensajes.size()==0) {
-            wait();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         if (totalMensajes>0){
