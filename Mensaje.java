@@ -25,7 +25,7 @@ public class Mensaje {
 
     //Getters y Setters necesarios
     public void setInicio(boolean inicio){ this.inicio=inicio;}
-    public void setFin(boolean inicio){ this.inicio=fin;}
+    public void setFin(boolean fin_a){ this.fin=fin_a;}
     public void setSPAM(boolean SPAM){this.SPAM=SPAM;}
     public int getTiempo(){return ti;}
     public boolean getFinal(){return fin;}

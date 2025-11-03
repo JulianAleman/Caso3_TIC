@@ -4,9 +4,9 @@ public class ClienteEmisor extends Thread{
     private int correosProducidos;
     private BuzonEntrada buzonEntrada;
 
-    public ClienteEmisor(int correosAProducir, int id, BuzonEntrada buzonEntrada){
+    public ClienteEmisor(int correosAProducir, int id, BuzonEntrada buzonE){
         ClienteEmisor.correosAProducir=correosAProducir;
-        this.buzonEntrada=buzonEntrada;
+        buzonEntrada=buzonE;
         this.correosProducidos=0;
         this.id=id;
     }

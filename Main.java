@@ -33,7 +33,7 @@ public class Main {
                             CapBE = val;
                             break;
                         case "Capacidad del buzón de entrega":
-                            CapBE= val;
+                            CapBEN= val;
                             break;
                     }
             }

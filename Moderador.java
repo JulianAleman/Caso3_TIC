@@ -14,8 +14,9 @@ public class Moderador extends Thread{
 
     @Override
     public void run(){
+        System.out.println("MODERADOR");
         while(Fin==false){
-            System.out.println("MODERADOR");
+            
             Mensaje m =buzonC.revisar();
             if (m!=null){
                 if(m.getFinal()==false){
@@ -23,10 +24,16 @@ public class Moderador extends Thread{
                     if ((numero%7)!=0){
                         BE.agregar(m);
                     }
-                    
+                    System.out.println("MODERADORE");
                 }else{Fin=m.getFinal();}
             }
-            Thread.yield();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+            // Thread.yield();
         }
 
     }

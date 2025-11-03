@@ -19,18 +19,21 @@ public class FiltroSPAM extends Thread{
 
     @Override
     public void run(){
+        System.out.println("FILTRO");
         while (numFinales<=numClientes || numInicio<=numClientes) {
-            System.out.println("FILTRO");
             Mensaje mensaje= buzonEntrada.SacarMensaje();
-            if (mensaje.getSPAM()) {
-                buzonCuarentena.Ingresar(mensaje);
-            }else{
-                if (mensaje.getFinal()) {
-                    numFinales++;
-                }else if(mensaje.getInicio()){
-                    numInicio++;
+            if(mensaje!=null){
+                if (mensaje.getSPAM()) {
+                    buzonCuarentena.Ingresar(mensaje);
+                    System.out.println("CUA");
+                }else{
+                    if (mensaje.getFinal()) {
+                        numFinales++;
+                    }else if(mensaje.getInicio()){
+                        numInicio++;
+                    }
+                    buzonEntrega.agregar(mensaje);
                 }
-                buzonEntrega.agregar(mensaje);
             }
         }
     }
