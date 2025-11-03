@@ -14,12 +14,11 @@ public class Moderador extends Thread{
 
     @Override
     public void run(){
-        System.out.println("MODERADOR");
+        System.out.println("=!== Se inicio el Moderador =!==");
         while(Fin==false){
             
             Mensaje m =buzonC.revisar();
             if (m!=null){
-                System.out.println(m.getFinal());
                 if(m.getFinal()==false){
                     int numero= random.nextInt(21)+1;
                     if ((numero%7)!=0){
@@ -36,6 +35,6 @@ public class Moderador extends Thread{
             //  }
             Thread.yield();
         }
-        System.out.println("TERMINO MOD");
+        System.out.println("==== Termino el Moderador ====");
     }
 }

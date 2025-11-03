@@ -13,10 +13,10 @@ public class BuzonCuarentena {
     }
     
     public synchronized void Ingresar(Mensaje m){
-        //System.out.println("ingreaa CUA");
         int tiempo= random.nextInt(10001)+10000;
         m.setTiempo(tiempo);
         mensajes.add(m);
+        System.out.println("El mensaje: "+m.getId()+" ha sido agregado del buzon de cuarentena con tiempo "+ tiempo);
     }
     
     public synchronized Mensaje revisar(){
@@ -28,7 +28,7 @@ public class BuzonCuarentena {
             if(m.getTiempo()==0){
                 it.remove();
                 encontrado=m;
-                System.out.println("Sale de CUA");
+                System.out.println("El mensaje: "+m.getId()+" ha sido retirado del buzon de cuarentena");
             }
         }
         

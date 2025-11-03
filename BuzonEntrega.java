@@ -13,8 +13,7 @@ public class BuzonEntrega {
         while(capacidadT==buzon.size()){
             Thread.yield();
         }
-        System.out.println("ingreaa ENTREGA");
-        System.out.println(buzon.size());
+        System.out.println("El mensaje: "+m.getId()+" ha sido agregado del buzon de entrega");
         buzon.add(m);
     }
 
@@ -22,11 +21,9 @@ public class BuzonEntrega {
         Mensaje m= null;
 
         if(buzon.size()!=0){
-            System.out.println("Sale Entrega");
-            m=buzon.remove(0);
-            System.out.println(m);
-            System.out.println("FINAL?:"+m.getFinal());
             
+            m=buzon.remove(0);
+            System.out.println("El mensaje: "+m.getId()+" ha sido retirado del buzon de entrega");
         }
         return m;
     }

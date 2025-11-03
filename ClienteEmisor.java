@@ -15,11 +15,10 @@ public class ClienteEmisor extends Thread{
     @Override
     public void run(){
         int secuencial=id;
-
+        System.out.println("=!== Se inicio el Cliente emisor =!==");
         while (correosProducidos<correosAProducir) {
-            //System.out.println("CLIENTE");
-            secuencial++;
             correosProducidos++;
+            secuencial++;
             Mensaje mensaje;
             //Definimos si es mensaje de inicio, fin o otro
             if (correosProducidos==1) {
@@ -37,6 +36,6 @@ public class ClienteEmisor extends Thread{
             buzonEntrada.IngresarMensaje(mensaje);
             
         }
-        System.out.println("TERMINO Clie");
+        System.out.println("==== Termino el cliente Emisor ====");
     }
 }

@@ -19,19 +19,18 @@ public class FiltroSPAM extends Thread{
 
     @Override
     public void run(){
-        //System.out.println("FILTRO");
+        System.out.println("=!== Se inicio El filtro =!==");        
         while (numFinales<numClientes || numInicio<numClientes) {
             Mensaje mensaje= buzonEntrada.SacarMensaje();
             if(mensaje!=null){
                 if (mensaje.getSPAM()) {
                     buzonCuarentena.Ingresar(mensaje);
-                   // System.out.println("CUA");
-                }else if (numFinales<numClientes) {
+                }else if (numFinales<=numClientes) {
                     if (mensaje.getFinal()) {
                         numFinales++;
                     }else if(mensaje.getInicio()){
                         numInicio++;
-                    }else{buzonEntrega.agregar(mensaje); System.out.println("HI");}
+                    }else{buzonEntrega.agregar(mensaje);}
                  }
                  
             }
@@ -45,6 +44,6 @@ public class FiltroSPAM extends Thread{
                          buzonEntrega.agregar(mensaje);
                      }
                  }
-        System.out.println("TERMINO SPAM");
+        System.out.println("====Termino el filtro de SPAM====");
     }
 }

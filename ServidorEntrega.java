@@ -13,6 +13,7 @@ public class ServidorEntrega extends Thread{
 
     @Override
     public void run(){
+        System.out.println("=!== Se inicio Servidor de Entrega =!==");
         while(Final==false){
             Mensaje m = BE.consultar();
             if (m!=null){
@@ -28,6 +29,6 @@ public class ServidorEntrega extends Thread{
                 }
             }
         }
-        System.out.println("TERMINO SERV");
+        System.out.println("==== Termino el servidor de entrega ====");
     }
 }

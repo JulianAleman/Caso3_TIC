@@ -15,15 +15,18 @@ public class BuzonEntrada {
     public synchronized void IngresarMensaje(Mensaje mensaje) {
         while (mensajes.size()==capacidad) {
             try {
+                System.out.println("El Cliente esta en pausa porque el buzon esta en su capacidad maxima");
                 wait();
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
-        //System.out.println("ingreaa BE");
+        System.out.println("El mensaje: "+mensaje.getId()+" ha sido agregado del buzon de entrada");
         mensajes.add(mensaje);
         totalMensajes--;
+        if (totalMensajes==0){
+            System.out.println("Ya se agregaron todos los mensajes");
+        }
         notify();
     }
 
@@ -31,17 +34,16 @@ public class BuzonEntrada {
         Mensaje mensaje=null;
         while (mensajes.size()==0) {
             try {
+                System.out.println("Filtro SPAM ha entrado en pausa porque no hay mensajes");
                 wait();
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
-
+        
         if (mensajes.size()!=0){
-         //   System.out.println("Sale BE");
             mensaje=mensajes.remove(0);
-             System.out.println(mensajes.size());
+            System.out.println("El mensaje: "+mensaje.getId()+" ha sido retirado del buzon de entrada");
             notify();
         }
 

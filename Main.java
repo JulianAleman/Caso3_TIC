@@ -52,7 +52,7 @@ public class Main {
         // CREACION DE THREADS
             // Clientes Emisores
         for (int i= 0; i<numeroCE;i++){
-           ClienteEmisor c= new ClienteEmisor(numMPC, i, BE);
+           ClienteEmisor c= new ClienteEmisor(numMPC, (i*numMPC), BE);
            c.start();
         }
             //Filtros SPAM
