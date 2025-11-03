@@ -20,14 +20,15 @@ public class BuzonCuarentena {
     
     public synchronized Mensaje revisar(){
         Iterator<Mensaje> it = mensajes.iterator();
+        Mensaje encontrado = null;
         while (it.hasNext()){
             Mensaje m = it.next();
             m.disminuir();
             if(m.getTiempo()==0){
                 it.remove();
-                return m;
+                encontrado=m;
             }
         }
-        return null;
+        return encontrado;
     }
 }

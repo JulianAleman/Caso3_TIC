@@ -14,6 +14,7 @@ public class ServidorEntrega extends Thread{
     @Override
     public void run(){
         while(Final!=false){
+            System.out.println("SERVIDOR");
             Mensaje m= BE.consultar();
             if (m!=null){
                 int r= random.nextInt(1000);

@@ -1,6 +1,6 @@
-Número de clientes emisores:
-Número de mensajes por cliente:
-Número de filtros de spam:
-Número de servidores de entrega:
-Capacidad del buzón de entrada:
-Capacidad del buzón de entrega:
+Número de clientes emisores: 2
+Número de mensajes por cliente: 2
+Número de filtros de spam: 1
+Número de servidores de entrega: 1
+Capacidad del buzón de entrada: 3
+Capacidad del buzón de entrega: 3

@@ -20,6 +20,7 @@ public class FiltroSPAM extends Thread{
     @Override
     public void run(){
         while (numFinales<=numClientes || numInicio<=numClientes) {
+            System.out.println("FILTRO");
             Mensaje mensaje= buzonEntrada.SacarMensaje();
             if (mensaje.getSPAM()) {
                 buzonCuarentena.Ingresar(mensaje);

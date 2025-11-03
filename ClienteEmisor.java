@@ -17,6 +17,7 @@ public class ClienteEmisor extends Thread{
         int secuencial=id;
 
         while (correosProducidos<correosAProducir) {
+            System.out.println("CLIENTE");
             secuencial++;
             correosProducidos++;
             Mensaje mensaje;

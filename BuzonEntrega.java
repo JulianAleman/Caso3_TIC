@@ -18,7 +18,7 @@ public class BuzonEntrega {
 
     public synchronized Mensaje consultar(){
         if(buzon.size()!=0){
-            return buzon.removeFirst();
+            return buzon.remove(0);
         }
         return null;
     }

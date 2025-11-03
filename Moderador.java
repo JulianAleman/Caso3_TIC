@@ -15,6 +15,7 @@ public class Moderador extends Thread{
     @Override
     public void run(){
         while(Fin==false){
+            System.out.println("MODERADOR");
             Mensaje m =buzonC.revisar();
             if (m!=null){
                 if(m.getFinal()==false){

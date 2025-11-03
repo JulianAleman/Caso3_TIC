@@ -1,13 +1,14 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class BuzonEntrada {
     private int capacidad;
-    private List<Mensaje> mensajes;
+    private ArrayList<Mensaje> mensajes;
     private int totalMensajes;
 
     public BuzonEntrada(int capacidad, int totalMensajes){
         this.capacidad=capacidad;
         this.totalMensajes=totalMensajes;
+        mensajes= new ArrayList<Mensaje>();
     }
 
 
@@ -37,7 +38,7 @@ public class BuzonEntrada {
         }
 
         if (totalMensajes>0){
-            mensaje=mensajes.removeFirst();
+            mensaje=mensajes.remove(0);
             notify();
         }
 
