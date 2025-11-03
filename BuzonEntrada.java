@@ -41,11 +41,9 @@ public class BuzonEntrada {
             }
         }
         
-        if (mensajes.size()!=0){
-            mensaje=mensajes.remove(0);
-            System.out.println("El mensaje: "+mensaje.getId()+" ha sido retirado del buzon de entrada");
-            notify();
-        }
+        mensaje=mensajes.remove(0);
+        System.out.println("El mensaje: "+mensaje.getId()+" ha sido retirado del buzon de entrada");
+        notify();
 
         return mensaje;
     }

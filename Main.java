@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.CyclicBarrier;
 
 public class Main {
     private static int numeroCE;
@@ -48,7 +49,13 @@ public class Main {
         BuzonEntrada BE = new BuzonEntrada(CapBE, totalMensajes);
         BuzonEntrega BEN= new BuzonEntrega(CapBEN);
 
-
+        CyclicBarrier barrier = new CyclicBarrier(numSPAM, ()->{
+            Mensaje mensaje= new Mensaje(totalMensajes);
+                mensaje.setFin(true);
+                mensaje.setSPAM(false);
+                BC.Ingresar(mensaje);
+                BEN.agregar(mensaje);
+        });
         // CREACION DE THREADS
             // Clientes Emisores
         for (int i= 0; i<numeroCE;i++){
@@ -57,8 +64,9 @@ public class Main {
         }
             //Filtros SPAM
         for (int i= 0; i<numSPAM;i++){
-            FiltroSPAM c= new FiltroSPAM(numeroCE, BC, BE, BEN);
+            FiltroSPAM c= new FiltroSPAM(numeroCE, BC, BE, BEN, barrier);
             c.start();
+
         }
             //Servidores de Entrega
         for (int i= 0; i<numSE;i++){
