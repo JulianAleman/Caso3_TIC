@@ -21,6 +21,7 @@ public class BuzonEntrada {
                 e.printStackTrace();
             }
         }
+        //System.out.println("ingreaa BE");
         mensajes.add(mensaje);
         totalMensajes--;
         notify();
@@ -37,8 +38,10 @@ public class BuzonEntrada {
             }
         }
 
-        if (totalMensajes>0){
+        if (mensajes.size()!=0){
+         //   System.out.println("Sale BE");
             mensaje=mensajes.remove(0);
+             System.out.println(mensajes.size());
             notify();
         }
 

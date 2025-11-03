@@ -13,13 +13,21 @@ public class BuzonEntrega {
         while(capacidadT==buzon.size()){
             Thread.yield();
         }
+        System.out.println("ingreaa ENTREGA");
+        System.out.println(buzon.size());
         buzon.add(m);
     }
 
     public synchronized Mensaje consultar(){
+        Mensaje m= null;
+
         if(buzon.size()!=0){
-            return buzon.remove(0);
+            System.out.println("Sale Entrega");
+            m=buzon.remove(0);
+            System.out.println(m);
+            System.out.println("FINAL?:"+m.getFinal());
+            
         }
-        return null;
+        return m;
     }
 }

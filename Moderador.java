@@ -19,6 +19,7 @@ public class Moderador extends Thread{
             
             Mensaje m =buzonC.revisar();
             if (m!=null){
+                System.out.println(m.getFinal());
                 if(m.getFinal()==false){
                     int numero= random.nextInt(21)+1;
                     if ((numero%7)!=0){
@@ -27,14 +28,14 @@ public class Moderador extends Thread{
                     System.out.println("MODERADORE");
                 }else{Fin=m.getFinal();}
             }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return;
-            }
-            // Thread.yield();
+            //  try {
+            //      Thread.sleep(1000);
+            //  } catch (InterruptedException e) {
+            //      Thread.currentThread().interrupt();
+            //      return;
+            //  }
+            Thread.yield();
         }
-
+        System.out.println("TERMINO MOD");
     }
 }

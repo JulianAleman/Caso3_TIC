@@ -17,7 +17,7 @@ public class ClienteEmisor extends Thread{
         int secuencial=id;
 
         while (correosProducidos<correosAProducir) {
-            System.out.println("CLIENTE");
+            //System.out.println("CLIENTE");
             secuencial++;
             correosProducidos++;
             Mensaje mensaje;
@@ -37,5 +37,6 @@ public class ClienteEmisor extends Thread{
             buzonEntrada.IngresarMensaje(mensaje);
             
         }
+        System.out.println("TERMINO Clie");
     }
 }

@@ -13,9 +13,8 @@ public class ServidorEntrega extends Thread{
 
     @Override
     public void run(){
-        while(Final!=false){
-            System.out.println("SERVIDOR");
-            Mensaje m= BE.consultar();
+        while(Final==false){
+            Mensaje m = BE.consultar();
             if (m!=null){
                 int r= random.nextInt(1000);
                 try {
@@ -24,7 +23,11 @@ public class ServidorEntrega extends Thread{
                     Thread.currentThread().interrupt();
                     break;
                 }
+                if(m.getFinal()){
+                    Final=true;
+                }
             }
         }
+        System.out.println("TERMINO SERV");
     }
 }
