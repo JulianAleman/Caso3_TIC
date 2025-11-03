@@ -24,7 +24,7 @@ public class ServidorEntrega extends Thread{
                     Thread.currentThread().interrupt();
                     break;
                 }
-                if(m.getFinal()){
+                if(m.getId()==-1){
                     Final=true;
                 }
             }

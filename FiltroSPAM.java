@@ -1,8 +1,9 @@
 public class FiltroSPAM extends Thread{
     
-    private int numInicio;
-    private int numFinales;
+    private static int numInicio=0;
+    private static int numFinales=0;
     private int numClientes;
+    private static boolean enviadoFin=false;
 
     private BuzonCuarentena buzonCuarentena;
     private BuzonEntrada buzonEntrada;
@@ -12,8 +13,6 @@ public class FiltroSPAM extends Thread{
         this.buzonCuarentena=buzonCuarentena;
         this.buzonEntrada=buzonEntrada;
         this.buzonEntrega=buzonEntrega;
-        this.numInicio=0;
-        this.numFinales=0;
         this.numClientes=numClientes;
     }
 
@@ -24,26 +23,40 @@ public class FiltroSPAM extends Thread{
             Mensaje mensaje= buzonEntrada.SacarMensaje();
             if(mensaje!=null){
                 if (mensaje.getSPAM()) {
+                    System.out.println("El mensaje: "+mensaje.getId()+" es SPAM y se envia a cuarentena");
                     buzonCuarentena.Ingresar(mensaje);
                 }else if (numFinales<=numClientes) {
+                    System.out.println("El mensaje: "+mensaje.getId()+" no es SPAM y se envia al buzon de entrega");
                     if (mensaje.getFinal()) {
-                        numFinales++;
+                        synchronized(this){
+                            System.out.println("Se recibio un mensaje de finalizacion del cliente emisor");
+                            numFinales++;
+                        }
+                        buzonEntrega.agregar(mensaje);
                     }else if(mensaje.getInicio()){
-                        numInicio++;
-                    }else{buzonEntrega.agregar(mensaje);}
+                        synchronized(this){
+                            System.out.println("Se recibio un mensaje de inicio del cliente emisor");
+                            numInicio++;
+                        }
+                        buzonEntrega.agregar(mensaje);
+                    }else{
+                        System.out.println("El mensaje: "+mensaje.getId()+" es un mensaje normal");
+                        buzonEntrega.agregar(mensaje);
+                    }
                  }
                  
             }
         }
-        Mensaje mensaje= new Mensaje(numFinales);
-                mensaje.setFin(true);
-                mensaje.setSPAM(false);
-        if (numFinales==numClientes) {
-                    if(mensaje.getFinal()){
-                         buzonCuarentena.Ingresar(mensaje);
-                         buzonEntrega.agregar(mensaje);
-                     }
-                 }
+        
+        if (!enviadoFin) {
+                Mensaje mensaje= new Mensaje(-1);
+                mensaje.setTiempo(20002);
+                buzonCuarentena.Ingresar(mensaje);
+                buzonEntrega.agregar(mensaje);
+                enviadoFin=true;
+        }
+        
+                   
         System.out.println("====Termino el filtro de SPAM====");
     }
 }
