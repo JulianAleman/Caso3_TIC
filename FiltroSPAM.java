@@ -3,9 +3,10 @@ import java.util.concurrent.BrokenBarrierException;
 
 public class FiltroSPAM extends Thread{
     
-    private int numInicio;
-    private int numFinales;
+    private static int numInicio=0;
+    private static int numFinales=0;
     private int numClientes;
+    private static boolean enviadoFin=false;
 
     private BuzonCuarentena buzonCuarentena;
     private BuzonEntrada buzonEntrada;
@@ -16,8 +17,6 @@ public class FiltroSPAM extends Thread{
         this.buzonCuarentena=buzonCuarentena;
         this.buzonEntrada=buzonEntrada;
         this.buzonEntrega=buzonEntrega;
-        this.numInicio=0;
-        this.numFinales=0;
         this.numClientes=numClientes;
         barrera=barre;
     }
@@ -29,8 +28,10 @@ public class FiltroSPAM extends Thread{
             Mensaje mensaje= buzonEntrada.SacarMensaje();
             if(mensaje!=null){
                 if (mensaje.getSPAM()) {
+                    System.out.println("El mensaje: "+mensaje.getId()+" es SPAM y se envia a cuarentena");
                     buzonCuarentena.Ingresar(mensaje);
                 }else if (numFinales<=numClientes) {
+                    System.out.println("El mensaje: "+mensaje.getId()+" no es SPAM y se envia al buzon de entrega");
                     if (mensaje.getFinal()) {
                         synchronized(this){
                             System.out.println("Se recibio un mensaje de finalizacion del cliente emisor");
@@ -43,10 +44,11 @@ public class FiltroSPAM extends Thread{
                         }
                         buzonEntrega.agregar(mensaje);
                     }else{buzonEntrega.agregar(mensaje);}
-                 }
-            }
+                    }else{
+                        buzonEntrega.agregar(mensaje);
+                    }
+                }
         }
-        
         try {
             barrera.await();
         } catch (InterruptedException e) {
@@ -55,6 +57,9 @@ public class FiltroSPAM extends Thread{
         } catch (BrokenBarrierException e) {
             System.err.println("Barrier broken while FiltroSPAM was waiting: " + e.getMessage());
         }
+        
+                   
+
         System.out.println("====Termino el filtro de SPAM====");
     }
 }
