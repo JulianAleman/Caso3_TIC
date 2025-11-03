@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class BuzonCuarentena {
@@ -18,13 +19,15 @@ public class BuzonCuarentena {
     }
     
     public synchronized Mensaje revisar(){
-        Mensaje encontrado= null;
-        for (Mensaje m: mensajes){
+        Iterator<Mensaje> it = mensajes.iterator();
+        while (it.hasNext()){
+            Mensaje m = it.next();
             m.disminuir();
             if(m.getTiempo()==0){
-                encontrado=m;
+                it.remove();
+                return m;
             }
         }
-        return encontrado;
-    } 
+        return null;
+    }
 }

@@ -15,4 +15,11 @@ public class BuzonEntrega {
         }
         buzon.add(m);
     }
+
+    public synchronized Mensaje consultar(){
+        if(buzon.size()!=0){
+            return buzon.removeFirst();
+        }
+        return null;
+    }
 }

@@ -6,6 +6,7 @@ public class ClienteEmisor extends Thread{
 
     public ClienteEmisor(int correosAProducir, int id, BuzonEntrada buzonEntrada){
         ClienteEmisor.correosAProducir=correosAProducir;
+        this.buzonEntrada=buzonEntrada;
         this.correosProducidos=0;
         this.id=id;
     }

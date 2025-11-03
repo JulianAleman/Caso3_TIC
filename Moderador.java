@@ -20,7 +20,7 @@ public class Moderador extends Thread{
                 if(m.getFinal()==false){
                     int numero= random.nextInt(21)+1;
                     if ((numero%7)!=0){
-                        // BE.agregar();
+                        BE.agregar(m);
                     }
                     
                 }else{Fin=m.getFinal();}

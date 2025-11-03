@@ -62,7 +62,7 @@ public class Main {
         }
             //Servidores de Entrega
         for (int i= 0; i<numSE;i++){
-            ServidorEntrega c= new ServidorEntrega();
+            ServidorEntrega c= new ServidorEntrega(BEN);
             c.start();
         }
             //Moderador
