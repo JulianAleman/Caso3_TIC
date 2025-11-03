@@ -43,15 +43,15 @@ public class Main {
 
         //Crear Buzones
         BuzonCuarentena BC= new BuzonCuarentena();
-        BuzonEntrada BE = new BuzonEntrada();
+        //BuzonEntrada BE = new BuzonEntrada();
         BuzonEntrega BEN= new BuzonEntrega(CapBEN);
 
 
         // CREACION DE THREADS
             // Clientes Emisores
         for (int i= 0; i<numeroCE;i++){
-            ClienteEmisor c= new ClienteEmisor();
-            c.start();
+           // ClienteEmisor c= new ClienteEmisor();
+           // c.start();
         }
             //Filtros SPAM
         for (int i= 0; i<numSPAM;i++){

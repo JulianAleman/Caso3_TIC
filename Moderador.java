@@ -17,13 +17,13 @@ public class Moderador extends Thread{
         while(Fin==false){
             Mensaje m =buzonC.revisar();
             if (m!=null){
-                if(m.Final()==false){
+                if(m.getFinal()==false){
                     int numero= random.nextInt(21)+1;
                     if ((numero%7)!=0){
                         // BE.agregar();
                     }
                     
-                }else{Fin=m.Final();}
+                }else{Fin=m.getFinal();}
             }
             Thread.yield();
         }
