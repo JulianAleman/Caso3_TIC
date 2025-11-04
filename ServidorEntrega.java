@@ -24,7 +24,7 @@ public class ServidorEntrega extends Thread{
                     Thread.currentThread().interrupt();
                     break;
                 }
-                if(m.getId()==-1){
+                if(m.getFinal()){
                     Final=true;
                 }
                 System.out.println("El mensaje "+ m.getId()+ "ha sido procesador por servidor");

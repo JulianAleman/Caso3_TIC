@@ -20,11 +20,12 @@ public class BuzonEntrega {
 
     public synchronized Mensaje consultar(){
         Mensaje m= null;
-        while(buzon.isEmpty()){
+
+        if(buzon.size()!=0){
             
+            m=buzon.remove(0);
+            System.out.println("El mensaje: "+m.getId()+" ha sido retirado del buzon de entrega");
         }
-        m=buzon.remove(0);
-        System.out.println("El mensaje: "+m.getId()+" ha sido retirado del buzon de entrega");
         return m;
     }
 }

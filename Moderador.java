@@ -10,24 +10,33 @@ public class Moderador extends Thread{
         buzonC=buzon1;
         BE= Buzon2;
         random= new Random();
-        Fin=false;
     }
 
     @Override
     public void run(){
         System.out.println("=!== Se inicio el Moderador =!==");
         while(Fin==false){
+            
             Mensaje m =buzonC.revisar();
             if (m!=null){
-                if(m.getId()!=-1){
+                if(m.getFinal()==false){
                     int numero= random.nextInt(21)+1;
                     if ((numero%7)!=0){
                         System.out.println("Agregado desde cuarentena");
                         BE.agregar(m);
                     }
-                }else{Fin=true;}
+                    System.out.println("MODERADORE");
+                }else{Fin=m.getFinal();}
             }
+            //  try {
+            //      Thread.sleep(1000);
+            //  } catch (InterruptedException e) {
+            //      Thread.currentThread().interrupt();
+            //      return;
+            //  }
+            Thread.yield();
         }
         System.out.println("==== Termino el Moderador ====");
     }
 }
+

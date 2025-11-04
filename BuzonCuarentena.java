@@ -13,14 +13,10 @@ public class BuzonCuarentena {
     }
     
     public synchronized void Ingresar(Mensaje m){
-        if (m.getId()!=-1) {
-            int tiempo= random.nextInt(10001)+10000;
-            m.setTiempo(tiempo);
-            System.out.println("El mensaje: "+m.getId()+" ha sido agregado del buzon de cuarentena con tiempo "+ tiempo);
-        }else{
-            System.out.println("El mensaje de fin ha sido agregado del buzon de cuarentena");
-        }
+        int tiempo= random.nextInt(10001)+10000;
+        m.setTiempo(tiempo);
         mensajes.add(m);
+        System.out.println("El mensaje: "+m.getId()+" ha sido agregado del buzon de cuarentena con tiempo "+ tiempo);
     }
     
     public synchronized Mensaje revisar(){
