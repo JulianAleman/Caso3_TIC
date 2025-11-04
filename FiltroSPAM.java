@@ -39,8 +39,15 @@ public class FiltroSPAM extends Thread{
                             System.out.println("Se recibio un mensaje de inicio del cliente emisor");
                             numInicio++;
                         }
+                        while(buzonEntrega.Hay_esp()){
+                             Thread.yield();
+                        }
                         buzonEntrega.agregar(mensaje);
-                    }else{buzonEntrega.agregar(mensaje);}
+                    }else{
+                         while(buzonEntrega.Hay_esp()){
+                             Thread.yield();
+                        }
+                        buzonEntrega.agregar(mensaje);}
                  }
             }
         }

@@ -23,9 +23,11 @@ public class Moderador extends Thread{
                     int numero= random.nextInt(21)+1;
                     if ((numero%7)!=0){
                         System.out.println("Agregado desde cuarentena");
+                        while(BE.Hay_esp()){
+                             Thread.yield();
+                        }
                         BE.agregar(m);
                     }
-                    System.out.println("MODERADORE");
                 }else{Fin=m.getFinal();}
             }
             //  try {

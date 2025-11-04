@@ -11,13 +11,10 @@ public class BuzonEntrega {
 
     public synchronized void agregar(Mensaje m){
 
-        while(capacidadT==buzon.size()){
-            Thread.yield();
-        }
         System.out.println("El mensaje: "+m.getId()+" ha sido agregado del buzon de entrega");
         buzon.add(m);
     }
-
+    public synchronized boolean Hay_esp(){return (capacidadT==buzon.size());} 
     public synchronized Mensaje consultar(){
         Mensaje m= null;
 
