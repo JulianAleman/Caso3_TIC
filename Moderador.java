@@ -24,6 +24,7 @@ public class Moderador extends Thread{
                     if ((numero%7)!=0){
                         System.out.println("Agregado desde cuarentena");
                         while(BE.Hay_esp()){
+                             System.out.println("Buzon lleno de entrega");
                              Thread.yield();
                         }
                         BE.agregar(m);
