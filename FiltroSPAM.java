@@ -40,14 +40,12 @@ public class FiltroSPAM extends Thread{
                             numInicio++;
                         }
                         while(buzonEntrega.Hay_esp()){
-                             System.out.println("Buzon lleno de entrega");
                              Thread.yield();
                              
                         }
                         buzonEntrega.agregar(mensaje);
                     }else{
                          while(buzonEntrega.Hay_esp()){
-                             System.out.println("Buzon lleno de entrega");
                              Thread.yield();
                         }
                         buzonEntrega.agregar(mensaje);}
